@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    command: npm start
+    ports: 
+      - "1880:1880"
+    volumes: 
+      - .:/data
+    restart: unless-stopped
+    container_name: nodered
