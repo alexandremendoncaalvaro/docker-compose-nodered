@@ -1,9 +1,6 @@
-  
-FROM nodered/node-red-docker
+FROM nodered/node-red
 
 USER root
-RUN echo "America/Sao_Paulo" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN npm install --save node-red-contrib-schedex node-red-contrib-simple-gate
 
