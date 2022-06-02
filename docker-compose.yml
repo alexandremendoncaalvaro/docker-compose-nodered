@@ -1,14 +1,28 @@
 version: "3"
 
 services:
-  app:
+  nodered:
     build: .
     command: npm start
     ports: 
       - "1880:1880"
     volumes: 
-      - ./data:/data
+      - node-red-data:/data
     environment:
       - TZ=America/Sao_Paulo
     restart: unless-stopped
     container_name: nodered
+
+  mosquitto:
+    image: eclipse-mosquitto:1.6.12
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+      - 8883:8883
+    volumes:
+      - mosquitto-conf:/mosquitto/config
+    restart: unless-stopped
+
+volumes:
+  node-red-data:
+  mosquitto-conf:
